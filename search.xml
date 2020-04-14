@@ -34,7 +34,9 @@
   <entry>
     <title>Markdown使用方法</title>
     <url>/2020/04/14/Markdown%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><p><em>加斜</em><br><strong>加粗</strong><br><strong><em>加粗加斜</em></strong><br><del>删除线</del></p>
+    <content><![CDATA[<p>Markdown使用方法</p>
+<a id="more"></a>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><p><em>加斜</em><br><strong>加粗</strong><br><strong><em>加粗加斜</em></strong><br><del>删除线</del></p>
 <hr>
 <h3 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h3><h2 id="下划线-1"><a href="#下划线-1" class="headerlink" title=" 下划线  "></a> <u>下划线</u>  </h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>123[^123]<br>[^123]:1233445667  </p>
 <hr>
@@ -98,16 +100,6 @@ char y</code></pre><hr>
 </tr>
 <tr>
 <td align="left">—–</td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="left">### 数学公式</td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="left"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">E &#x3D; mc^2</span><br></pre></td></tr></table></figure></td>
 <td align="right"></td>
 <td align="center"></td>
 </tr>
