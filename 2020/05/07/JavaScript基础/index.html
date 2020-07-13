@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yj196.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JavaScript的引入 1.内部标签 123&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;&#x2F;&#x2F;...&lt;&#x2F;script&gt;  2.外部标签 12&lt;script src&#x3D;&quot; abs.js&quot;&gt;&lt;&#x2F;script&gt;&lt;!--abs.js为引用的JavaScript文件--&gt;  基本语法入门123456789101112131">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础">
+<meta property="og:url" content="https://yj196.github.io/2020/05/07/JavaScript%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JavaScript的引入 1.内部标签 123&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;&#x2F;&#x2F;...&lt;&#x2F;script&gt;  2.外部标签 12&lt;script src&#x3D;&quot; abs.js&quot;&gt;&lt;&#x2F;script&gt;&lt;!--abs.js为引用的JavaScript文件--&gt;  基本语法入门123456789101112131">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/yj196/markdown/raw/master/20200507200022.png">
+<meta property="og:image" content="https://gitee.com/yj196/markdown/raw/master/20200507232714.png">
+<meta property="og:image" content="https://gitee.com/yj196/markdown/raw/master/20200507232844.png">
+<meta property="og:image" content="https://gitee.com/yj196/markdown/raw/master/20200507232953.png">
+<meta property="og:image" content="https://gitee.com/yj196/markdown/raw/master/20200507232304.png">
+<meta property="article:published_time" content="2020-05-07T09:13:24.000Z">
+<meta property="article:modified_time" content="2020-05-09T09:42:57.097Z">
+<meta property="article:author" content="younge">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/yj196/markdown/raw/master/20200507200022.png">
+
+<link rel="canonical" href="https://yj196.github.io/2020/05/07/JavaScript%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaScript基础 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yj196.github.io/2020/05/07/JavaScript%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="younge">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-07 17:13:24" itemprop="dateCreated datePublished" datetime="2020-05-07T17:13:24+08:00">2020-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-09 17:42:57" itemprop="dateModified" datetime="2020-05-09T17:42:57+08:00">2020-05-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <a id="more"></a>  
+
+<h3 id="JavaScript的引入"><a href="#JavaScript的引入" class="headerlink" title="JavaScript的引入"></a>JavaScript的引入</h3><blockquote>
+<p>1.内部标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">//...</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.外部标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">" abs.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--abs.js为引用的JavaScript文件--&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="基本语法入门"><a href="#基本语法入门" class="headerlink" title="基本语法入门"></a>基本语法入门</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> score=<span class="number">71</span>;<span class="comment">//script中的变量有let与var,var容易出错,一般用let;常量有const;</span></span></span><br><span class="line">        alert(score);</span><br><span class="line"><span class="actionscript">        <span class="comment">// console.log(score);</span></span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>利用console.log()在控制台打印变量</p>
+<p><img src="https://gitee.com/yj196/markdown/raw/master/20200507200022.png" alt=""></p>
+</blockquote>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">= <span class="comment">&lt;!--赋值--&gt;</span></span><br><span class="line">== <span class="comment">&lt;!--等于(类型可以不同,值相同)--&gt;</span></span><br><span class="line">===<span class="comment">&lt;!--绝对等于(类型,值均相同)--&gt;</span></span><br><span class="line">/**</span><br><span class="line">一般不用==做比较</span><br><span class="line">NaN===NaN，这个与所有的数值都不相等，包括自己</span><br><span class="line">只能通过isNaN(NaN)来判断这个数是否是NaN</span><br><span class="line">尽量避免用浮点数进行比较与运行,会存在精度问题</span><br><span class="line">**/</span><br></pre></td></tr></table></figure>
+
+<h3 id="常规知识"><a href="#常规知识" class="headerlink" title="常规知识"></a>常规知识</h3><blockquote>
+<h4 id="null-undefined"><a href="#null-undefined" class="headerlink" title="null ,undefined"></a>null ,undefined</h4><blockquote>
+<p>null表示为空,undefined表示未定义</p>
+</blockquote>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><blockquote>
+<p>java中数组要求为同一类型,但JavaScript可以为不同类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;保证代码可读性,尽量使用[]</span><br><span class="line">var arr&#x3D;[1,2,3,4,5,&#39;hello&#39;,null,ture];</span><br><span class="line">new Array(1,2,3,4,&#39;qun&#39;);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h4><blockquote>
+<p>对象用大括号包含其属性与方法</p>
+<p>属性间用逗号隔开</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Person person= new Person(1,2,3,4,5);</span></span><br><span class="line">ver person=&#123;</span><br><span class="line"> name:<span class="string">'younge'</span>,</span><br><span class="line"> age:<span class="number">23</span>,</span><br><span class="line"> tags:[<span class="string">'js'</span>,<span class="string">'web'</span>] </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> 对象名=&#123;</span><br><span class="line"> 属性名: 属性值,</span><br><span class="line"> 属性名: 属性值,</span><br><span class="line"> ...</span><br><span class="line"> 属性名: 属性值</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对象赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person,name=<span class="string">"younge"</span></span><br></pre></td></tr></table></figure>
+
+<p>动态删除属性 delete</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> person.name</span><br></pre></td></tr></table></figure>
+
+<p>动态添加新属性给对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person.haha=<span class="string">"haha"</span> <span class="comment">//直接给新属性赋值即可</span></span><br></pre></td></tr></table></figure>
+
+<p>判断属性是否在对象中 xx in xx</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'age'</span> <span class="keyword">in</span> person</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="string">'tostring'</span> <span class="keyword">in</span> person <span class="comment">//继承</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>判断属性是否是对象自身的 hasOwnProperty()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">person.hasOwnProperty(<span class="string">'age'</span>)</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">person.hasOwnProperty(<span class="string">'tostring'</span>)</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>获取对象的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">person.name</span><br><span class="line">person.age</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://gitee.com/yj196/markdown/raw/master/20200507232714.png" alt=""></p>
+<p><img src="https://gitee.com/yj196/markdown/raw/master/20200507232844.png" alt="![](https://gitee.com/yj196/markdown/raw/master/20200507232953.png)"></p>
+<p><img src="https://gitee.com/yj196/markdown/raw/master/20200507232953.png" alt=""></p>
+<h4 id="严查模式"><a href="#严查模式" class="headerlink" title="严查模式"></a>严查模式</h4><p><img src="https://gitee.com/yj196/markdown/raw/master/20200507232304.png" alt=""></p>
+</blockquote>
+<h3 id="Map和Set"><a href="#Map和Set" class="headerlink" title="Map和Set"></a>Map和Set</h3><blockquote>
+<p>Map:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES6 Map</span></span><br><span class="line"><span class="comment">//学生成绩,学生名字</span></span><br><span class="line"><span class="comment">// var name =["tom","jack","xiaoming"];</span></span><br><span class="line"><span class="comment">// var score=[100,93,82];</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> map=<span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">"tom"</span>,<span class="number">100</span>],[<span class="string">"jack"</span>,<span class="number">93</span>],[<span class="string">"xiaoming"</span>,<span class="number">82</span>]]);</span><br><span class="line"><span class="keyword">var</span> name=map.get(<span class="string">"tom"</span>); <span class="comment">//通过key值获得value</span></span><br><span class="line">map.set(<span class="string">"tom"</span>,<span class="number">92</span>);<span class="comment">//修改键值对</span></span><br><span class="line">map.set(<span class="string">"haha"</span>,<span class="number">32</span>);<span class="comment">//新增键值对</span></span><br><span class="line">map.delete(<span class="string">"tom"</span>);<span class="comment">//删除</span></span><br></pre></td></tr></table></figure>
+
+<p>Set:无序不重复集合</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> =new Set([1,234,"ewwe",12])//创建一个<span class="keyword">set</span>集合对象</span><br><span class="line"><span class="keyword">set</span>.add(2);//添加</span><br><span class="line"><span class="keyword">set</span>.delete(1);//删除;</span><br><span class="line">console.log(<span class="keyword">set</span>.has(3));//是否包含某个元素</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h3><blockquote>
+<ul>
+<li><p>什么是iterator :   iterator(遍历器是一种机制,一种接口,为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。</p>
+</li>
+<li><p>iterator作用:</p>
+<blockquote>
+<ol>
+<li>为各种数据结构，提供一个统一的、简便的访问接口；</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p>使得数据结构的成员能够按某种次序排列；</p>
+</li>
+<li><p>ES6 创造了一种新的遍历命令<code>for...of</code>循环，Iterator 接口主要为<code>for...of</code>消费。</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>遍历数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过for of/for in 下标</span></span><br><span class="line"><span class="keyword">var</span> arr=[<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> x <span class="keyword">of</span> )&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>遍历map</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map=<span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">'xiao'</span>,<span class="number">1</span>],[<span class="string">'ming'</span>,<span class="number">2</span>],[<span class="string">'zhang'</span>,<span class="number">3</span>]]);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> x <span class="keyword">of</span> map)&#123;</span><br><span class="line"><span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>遍历set</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">set</span>= new Set([1,2,3,4,5,2,1,3,56,2])</span><br><span class="line">for(let x of <span class="keyword">set</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><blockquote>
+<ul>
+<li><p>函数定义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义方式一</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abs</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(x&gt;<span class="number">0</span>)&#123;</span><br><span class="line">   <span class="keyword">return</span> x</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定义方式二</span></span><br><span class="line"><span class="keyword">var</span> abs =<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(x&gt;<span class="number">0</span>)&#123;</span><br><span class="line">   <span class="keyword">return</span> x</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//函数运行过程中遇到return即会停止,如果未定义返回,函数运行结束后会返回undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abs(10)</span><br></pre></td></tr></table></figure>
+
+<p>处理为输入参数时抛出异常</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> abs =<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line"><span class="comment">// typeof 操作符返回一个字符串，表示未经计算的操作数的类型,通过typeof返回ture/false来做if条件。</span></span><br><span class="line"><span class="comment">//Number 对象是原始数值的包装对象。</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> x!==<span class="string">'number'</span>)&#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="string">'not a number'</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(x&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> x</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量的作用域</p>
+<ol>
+<li>在函数体内定义的变量,在函数体外是无法使用的</li>
+<li>不同函数体内定义的同一名字的变量是互相不影响的</li>
+<li>内部函数可以访问外部函数的成员,但外部函数无法访问内部函数的成员</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">yj</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> x=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//内部函数可以访问外部函数,反则不可</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">yj2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> y=x+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.假设内部变量域外部变量重名</p>
+<p> 假设在JavaScript中函数查找变量从自身函数开始,由内向外查找,假设外部存在这个同名的函数变量,则内  部函数会屏蔽外部函数变量</p>
+</li>
+<li><p>提升变量的作用域</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">yj</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x=<span class="string">"x"</span>+y;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">  <span class="keyword">var</span> y=<span class="string">"y"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//结果:xundefined</span></span><br><span class="line"><span class="comment">//说明:js执行引擎,自动提升了y的声明,但不会提升变量y的赋值</span></span><br><span class="line"><span class="comment">/* 等价于如下</span></span><br><span class="line"><span class="comment">  function yj()&#123;</span></span><br><span class="line"><span class="comment">  var x="x"+y;</span></span><br><span class="line"><span class="comment">  var y;</span></span><br><span class="line"><span class="comment">  console.log(x);</span></span><br><span class="line"><span class="comment">   y="y";</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>全局对象window</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var x&#x3D;&quot;xxx&quot;;</span><br><span class="line">alert(x);</span><br><span class="line">alert(window.x);&#x2F;&#x2F;默认所有的全局变量,都会自动绑定到window对象下;alert函数本身是window变量</span><br></pre></td></tr></table></figure>
+
+<p>JavaScript实际上只有一个全局作用域,任何变量(函数也可被视为变量),假设没有在函数作用范围找到,就会向外查找</p>
+</li>
+<li><p>规范</p>
+<blockquote>
+<p>由于我们所有的全局变量都绑定到了window上,如果不同js文件使用了相同的全局变量就会造成冲突</p>
+<p>为了减少冲突,可适当自定义对象,使得一些全局变量绑定在其上</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;定义全局变量所属的对象</span><br><span class="line">var younge&#x3D;&#123;&#125;;</span><br><span class="line">&#x2F;&#x2F;定义全局变量,并绑定对象</span><br><span class="line">younge.name&#x3D;&#39;yang&#39;&#x2F;&#x2F;定义属性</span><br><span class="line">younge.add(a,b)&#123;</span><br><span class="line">return a+b;</span><br><span class="line">&#125;&#x2F;&#x2F;定义方法</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/26/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" rel="prev" title="反编译方法">
+      <i class="fa fa-chevron-left"></i> 反编译方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/07/mysql%E5%BB%BA%E7%AB%8B%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" rel="next" title="mysql建立远程连接">
+      mysql建立远程连接 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript的引入"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法入门"><span class="nav-number">2.</span> <span class="nav-text">基本语法入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较运算符"><span class="nav-number">3.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常规知识"><span class="nav-number">4.</span> <span class="nav-text">常规知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null-undefined"><span class="nav-number">4.1.</span> <span class="nav-text">null ,undefined</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">4.2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象"><span class="nav-number">4.3.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#严查模式"><span class="nav-number">4.4.</span> <span class="nav-text">严查模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map和Set"><span class="nav-number">5.</span> <span class="nav-text">Map和Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iterator"><span class="nav-number">6.</span> <span class="nav-text">iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">7.</span> <span class="nav-text">函数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">younge</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">younge</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
